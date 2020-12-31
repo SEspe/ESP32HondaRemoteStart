@@ -3,6 +3,15 @@
  * Sjekkesp_wifi_init
  * 
  * 
+   ESPNOW - Honda Remote Start using ESPNOW - Master
+   Date: 9th July 2020
+   Author: Stein Espe
+   Purpose: ESPNow Communication between a Master ESP32 and a Slave ESP32 to control a Hona EU70IS
+   Description: This sketch consists of the code for the Master module.
+   Communication between Master and Slave use ESPNow-protocol, 
+   fixed MAC eddresses entrered in code
+   
+   Code based on example from this source:
    ESPNOW - Basic communication - Master
    Date: 26th September 2017
    Author: Arvind Ravulavaru <https://github.com/arvindr21>
@@ -16,21 +25,15 @@
 
    Flow: Master
    Step 1 : ESPNow Init on Master and set it in STA mode
-   Step 2 : Start scanning for Slave ESP32 (we have added a prefix of `slave` to the AP_SSID of slave for an easy setup)
-   Step 3 : Once found, add Slave as peer
-   Step 4 : Register for send callback
+   Step 2 : Set fixed MAC and add slave
+   Step 3 : Register for send callback
    Step 5 : Start Transmitting data from Master to Slave
 
    Flow: Slave
    Step 1 : ESPNow Init on Slave
-   Step 2 : Update the AP_SSID of Slave with a prefix of `slave`
-   Step 3 : Set Slave in AP mode
-   Step 4 : Register for receive callback and wait for data
-   Step 5 : Once data arrives, print it in the serial monitor
-
-   Note: Master and Slave have been defined to easily understand the setup.
-         Based on the ESPNOW API, there is no concept of Master and Slave.
-         Any devices can act as master or salve.
+   Step 2 : Set fixed MAC and add slave
+   Step 3 : Register for receive callback and wait for data
+   Step 5 : Once data arrives, decode and set relay's
 */
 
 #define DEBUG 1                         // Include this definition to compile & show DEBUGmessages
